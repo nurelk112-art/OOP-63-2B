@@ -47,25 +47,25 @@ class Assassin(Hero):
 
 
 # создаём героев
-warrior = Warrior("Thor", 10, 100, 50, 80)
-mage = Mage("Merlin", 9, 80, 40, 100)
-assassin = Assassin("Shadow", 8, 90, 45, 95)
+warrior1 = Warrior("Aragorn", 10, 100, 50, 80)
+mage1 = Mage("Saruman", 9, 80, 40, 100)
+assassin1 = Assassin("Nemo", 8, 90, 45, 95)
 
 #вызываем методы
 print("=========== ВОИН ===========")
-warrior.greet()
-warrior.rest()
-warrior.attack()
+warrior1.greet()
+warrior1.rest()
+warrior1.attack()
 
 print("\n=========== МАГ ===========")
-mage.greet()
-mage.rest()
-mage.attack()
+mage1.greet()
+mage1.rest()
+mage1.attack()
 
 print("\n========= АССАСИН =========")
-assassin.greet()
-assassin.rest()
-assassin.attack()
+assassin1.greet()
+assassin1.rest()
+assassin1.attack()
 
 
 
@@ -78,18 +78,18 @@ print("3 - Assassin")
 choice = input("Ваш выбор: ")
 
 if choice == "1":
-    player = warrior
+    player = warrior1
 elif choice == "2":
-    player = mage
+    player = mage1
 elif choice == "3":
-    player = assassin
+    player = assassin1
 else:
     print("Неверный выбор")
     exit()
 
 
 # противник выбирается случайно
-heroes = [warrior, mage, assassin]
+heroes = [warrior1, mage1, assassin1]
 enemy = random.choice(heroes)
 
 print("\nВы выбрали:", type(player).__name__)
