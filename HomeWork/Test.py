@@ -46,7 +46,7 @@ class BankAccount:
     @property
     def full_info(self):
         return f"Герой: {self.hero.name}, Уровень: {self.hero.lvl}, Баланс:{self._balance} "
-
+   
     #Метод возвращяет название банка
     @classmethod
     def get_bank_name(cls):
