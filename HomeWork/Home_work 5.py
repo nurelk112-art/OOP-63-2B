@@ -1,54 +1,58 @@
-# Курсы валют относительно сома
-rates = {
-    "KGS": 1,
-    "USD": 89,
-    "EUR": 96,
-    "RUB": 1.2
-}
-
-class Money:
-
-    def __init__(self, amount, currency):
-        self.amount = amount
-        self.currency = currency
-
-    # Конвертация в сомы
-    def convert_to_kgs(self):
-        return self.amount * rates[self.currency]
-
-    # Красивый вывод
-    def __str__(self):
-        return f"{self.amount} {self.currency}"
-
-    # Сложение
-    def __add__(self, other):
-        total = self.convert_to_kgs() + other.convert_to_kgs()
-        return Money(total, "KGS")
-
-    # Вычитание
-    def __sub__(self, other):
-        total = self.convert_to_kgs() - other.convert_to_kgs()
-        return Money(total, "KGS")
-
-    # Умножение на число
-    def __mul__(self, number):
-        return Money(self.amount * number, self.currency)
-
-    # Деление на число
-    def __truediv__(self, number):
-        return Money(self.amount / number, self.currency)
+# Задание 1
+# Класс пользователя
+class User:
+    def __init__(self, name, role):
+        self.name = name
+        self.role = role
 
 
-# Пример использования
-money1 = Money(200, "USD")
-money2 = Money(5000, "KGS")
+# Декоратор проверки администратора
+def is_admin(func):
+    def wrapper(user):
+        if user.role == "admin":
+            return func(user)
+        else:
+            print("У вас нет доступа")
+    return wrapper
 
-result = money1 + money2
 
-print(result)
+# Функция удаления видео
+@is_admin
+def delete_video(user):
+    print("Видео удалено")
 
-print(money1 - money2)
 
-print(money1 * 2)
+# Проверка
+admin = User("Ardager", "admin")
+user = User("Bek", "user")
 
-print(money1 / 2)
+delete_video(admin)  #  Видео удалено
+delete_video(user)   #  У вас нет доступа
+
+
+# Задание 2
+import time
+
+
+# Декоратор таймера
+def timer(func):
+    def wrapper():
+        start = time.time()
+
+        func()
+
+        end = time.time()
+        print(f"Время выполнения: {round(end - start, 1)} секунд")
+
+    return wrapper
+
+
+# Функция загрузки видео
+@timer
+def download_video():
+    time.sleep(2)
+    print("Видео загружено")
+
+
+# Запуск
+download_video()
